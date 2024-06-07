@@ -10,4 +10,10 @@
     <select id="findAll" resultType="inhatc.cse.spring.controller.dto.BookDto">
         SELECT * FROM book;
     </select>
+
+    <select id="findById" parameterType="int" resultType="inhatc.cse.spring.controller.dto.BookDto">
+        SELECT *
+        FROM book
+        WHERE id=#{id}
+    </select>
 </mapper>

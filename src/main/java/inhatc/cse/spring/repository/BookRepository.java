@@ -1,6 +1,7 @@
 package inhatc.cse.spring.repository;
 
 import inhatc.cse.spring.controller.dto.BookDto;
+import inhatc.cse.spring.controller.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,5 +20,9 @@ public class BookRepository {
 
     public List<BookDto> findAll() {
         return sqlSession.selectList("Book.findAll");
+    }
+
+    public BookDto findById(int id) {
+        return sqlSession.selectOne("Book.findById", id);
     }
 }

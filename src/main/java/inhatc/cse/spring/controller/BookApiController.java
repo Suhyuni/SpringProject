@@ -1,6 +1,7 @@
 package inhatc.cse.spring.controller;
 
 import inhatc.cse.spring.controller.dto.BookDto;
+import inhatc.cse.spring.controller.dto.MemberDto;
 import inhatc.cse.spring.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/book")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:300/bookList"})
 @Slf4j
 public class BookApiController {
 
@@ -34,5 +35,15 @@ public class BookApiController {
     public ResponseEntity<List<BookDto>> getAllBooks() {
         List<BookDto> books = bookService.findAll();
         return new ResponseEntity<>(books, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDto> getBookById(@PathVariable int id) {
+        BookDto book = bookService.findById(id);
+        if (book != null) {
+            return new ResponseEntity<>(book, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

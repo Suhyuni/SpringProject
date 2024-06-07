@@ -1,6 +1,7 @@
 package inhatc.cse.spring.service;
 
 import inhatc.cse.spring.controller.dto.BookDto;
+import inhatc.cse.spring.controller.dto.MemberDto;
 import inhatc.cse.spring.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,9 @@ public class BookService {
 
     public List<BookDto> findAll() {
         return bookRepository.findAll();
+    }
+
+    public BookDto findById(int id) {
+        return bookRepository.findById(id);
     }
 }
